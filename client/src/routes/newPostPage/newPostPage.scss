@@ -1,0 +1,154 @@
+.wrapper-add-post {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  .newPostPage {
+    height: 100%;
+    display: flex;
+    width: 80%;
+
+    .formContainer {
+      flex: 3;
+      overflow: scroll;
+
+      .post-wrapper {
+        margin: 30px 50px 100px 0px;
+
+        form {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 20px;
+
+          .item {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            label {
+            }
+
+            input {
+              padding: 20px;
+              border-radius: 5px;
+              border: 1px solid gray;
+            }
+
+            select {
+              padding: 19px;
+            }
+
+            &.description {
+              width: 100%;
+              height: 320px;
+
+              .quill > .ql-container > .ql-editor {
+                height: 200px;
+                font-size: 16px;
+              }
+            }
+          }
+          .sendButton {
+            width: 30%;
+            border-radius: 5px;
+            border: none;
+            background-color: #fece51;
+            color: 000;
+            font-weight: bold;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .imageContainer {
+      flex: 2;
+      background-color: #f9f7f6;
+      //   height: 100%;
+      padding: 1rem;
+      overflow-y: scroll;
+      border-radius: 5px 0;
+
+      // @include md {
+      //   flex: none;
+      //   height: max-content;
+      //   margin-bottom: 50px;
+      // }
+
+      .image-wrapper {
+        padding: 0px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .image-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          gap: 1rem;
+          width: 100%;
+
+          .no-images {
+            grid-column: span 4;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #888;
+          }
+        }
+        .image-placeholder {
+          position: relative;
+          border: 2px dashed #ccc;
+          border-radius: 0.5rem;
+          width: 100%;
+          padding-top: 100%; // Makes the placeholder a square
+          overflow: hidden;
+
+          .placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #aaa;
+            background-color: #f9f9f9;
+          }
+
+          .image-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+
+          .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &:hover {
+              background: darkred;
+            }
+          }
+        }
+      }
+    }
+  }
+}

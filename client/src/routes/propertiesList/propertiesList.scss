@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  height: 100%;
+  margin: 2rem 0;
+  justify-content: center;
+  .proerties-container {
+    display: flex;
+    width: 80%;
+    gap: 2rem;
+    .list-container {
+      flex: 3;
+      height: 100%;
+      .properties-list {
+        padding-right: 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        margin: 3rem 0;
+      }
+    }
+    .map-container {
+      flex: 2;
+      .map {
+        height: 100vh;
+        width: 100%;
+      }
+    }
+  }
+}

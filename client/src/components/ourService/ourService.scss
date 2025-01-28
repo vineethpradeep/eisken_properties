@@ -1,0 +1,84 @@
+@use "../../break_points.scss" as bp;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 40px 0;
+    gap: 6rem;
+    justify-content: center;
+    width: 80%;
+
+    .content-section {
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      gap: 16px; /* Space between items */
+      width: 100%;
+      @include bp.md {
+        width: 41.666667%;
+      }
+      .caption {
+        color: #edac15;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 12px;
+        letter-spacing: 1.4px;
+      }
+      h3 {
+        font-size: 60px;
+        line-height: 1.1em;
+        letter-spacing: -2.1px;
+        font-weight: 600;
+      }
+      p {
+        font-size: 1.125rem;
+      }
+      .highlightBox {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        svg {
+          margin-right: 10px;
+        }
+        p {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+      .btnSection {
+        display: flex;
+        button {
+          margin-top: 20px;
+          &:first-child {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+    .image-section {
+      width: 100%;
+      // padding-top: 2.5rem;
+      @include bp.md {
+        width: 41.666667%;
+      }
+      p {
+        font-size: 1.125rem;
+        margin-top: 10px;
+      }
+      .card-section {
+        aspect-ratio: 16 / 9; /* Modern approach */
+        //   overflow: hidden;
+        img {
+          object-fit: fill; /* Crops the image to fit the aspect ratio */
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

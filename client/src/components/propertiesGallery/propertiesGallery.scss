@@ -1,0 +1,88 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(7, 5vw);
+  gap: 1rem; // Adjust for spacing
+  background-color: #f3f4f6; // Tailwind equivalent: bg-gray-100
+  padding: 2rem;
+
+  &__item {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    // Individual item positions based on the original React component
+    &--1 {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    &--2 {
+      grid-column: span 3;
+      grid-row: span 3;
+    }
+
+    &--3 {
+      grid-column: 6 / span 1;
+      grid-row: span 2;
+    }
+
+    &--4 {
+      grid-column: 7 / -1;
+      grid-row: span 2;
+    }
+
+    &--5 {
+      grid-column: span 2;
+      grid-row: 3 / span 3;
+    }
+
+    &--6 {
+      grid-column: 6 / span 2;
+      grid-row: 3 / span 5;
+    }
+
+    &--7 {
+      grid-column: 8 / -1;
+      grid-row: 3 / span 2;
+    }
+
+    &--8 {
+      grid-column: 8 / -1;
+      grid-row: 5 / span 3;
+    }
+
+    &--9 {
+      grid-column: 3 / span 2;
+      grid-row: 4 / span 2;
+    }
+
+    &--10 {
+      grid-column: 5 / span 1;
+      grid-row: 4 / span 2;
+    }
+
+    &--11 {
+      grid-column: 1 / span 1;
+      grid-row: 6 / span 2;
+    }
+
+    &--12 {
+      grid-column: 2 / span 2;
+      grid-row: 6 / span 1;
+    }
+
+    &--13 {
+      grid-column: 4 / span 2;
+      grid-row: 6 / span 2;
+    }
+
+    &--14 {
+      grid-column: 2 / span 2;
+      grid-row: 7 / span 1;
+    }
+  }
+}
