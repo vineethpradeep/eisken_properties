@@ -1,15 +1,23 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.scss";
-// import Footer from "./components/footer/Footer";
-// import Navbar from "./components/Navbar/Navbar";
-import HomePage from "./routes/homePage/HomePage";
-import PropertiesList from "./routes/propertiesList/PropertiesList";
-import Layout, { ProtectedLayout } from "./routes/layout/Layout";
-import PropertyDetails from "./routes/propertyDetails/PropertyDetails";
-import Login from "./routes/login/Login";
-import ProfilePage from "./routes/profilePage/ProfilePage";
-import Register from "./routes/register/register";
-import NewPostPage from "./routes/newPostPage/NewPostPage";
+import { Suspense, lazy } from "react";
+
+// const Footer = lazy(() => import("./components/footer/Footer"));
+// const Navbar = lazy(() => import("./components/Navbar/Navbar"));
+const HomePage = lazy(() => import("./routes/homePage/HomePage"));
+const PropertiesList = lazy(() =>
+  import("./routes/propertiesList/PropertiesList")
+);
+const Layout = lazy(() => import("./routes/layout/Layout"));
+const ProtectedLayout = lazy(() => import("./routes/layout/Layout"));
+const PropertyDetails = lazy(() =>
+  import("./routes/propertyDetails/PropertyDetails")
+);
+const Login = lazy(() => import("./routes/login/Login"));
+const ProfilePage = lazy(() => import("./routes/profilePage/ProfilePage"));
+const Register = lazy(() => import("./routes/register/register"));
+const NewPostPage = lazy(() => import("./routes/newPostPage/NewPostPage"));
+
 import {
   profilePageLoader,
   propertiesListLoader,
@@ -20,45 +28,85 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <Suspense fallback={<div>Loading Layout...</div>}>
+          <Layout />
+        </Suspense>
+      ),
       children: [
         {
           path: "/",
-          element: <HomePage />,
+          element: (
+            <Suspense fallback={<div>Loading HomePage...</div>}>
+              <HomePage />
+            </Suspense>
+          ),
         },
         {
           path: "/properties",
-          element: <PropertiesList />,
+          element: (
+            <Suspense fallback={<div>Loading Properties...</div>}>
+              <PropertiesList />
+            </Suspense>
+          ),
           loader: propertiesListLoader,
         },
         {
           path: "/properties/:id",
-          element: <PropertyDetails />,
+          element: (
+            <Suspense fallback={<div>Loading Property Details...</div>}>
+              <PropertyDetails />
+            </Suspense>
+          ),
           loader: propertyDetailsLoader,
         },
         {
           path: "/login",
-          element: <Login />,
+          element: (
+            <Suspense fallback={<div>Loading Login...</div>}>
+              <Login />
+            </Suspense>
+          ),
         },
         {
           path: "/register",
-          element: <Register />,
+          element: (
+            <Suspense fallback={<div>Loading Register...</div>}>
+              <Register />
+            </Suspense>
+          ),
         },
       ],
     },
     {
       path: "/",
-      element: <ProtectedLayout />,
+      element: (
+        <Suspense fallback={<div>Loading Protected Layout...</div>}>
+          <ProtectedLayout />
+        </Suspense>
+      ),
       children: [
         {
           path: "/profile",
-          element: <ProfilePage />,
+          element: (
+            <Suspense fallback={<div>Loading Profile...</div>}>
+              <ProfilePage />
+            </Suspense>
+          ),
           loader: profilePageLoader,
         },
-        { path: "/add", element: <NewPostPage /> },
+        {
+          path: "/add",
+          element: (
+            <Suspense fallback={<div>Loading New Post Page...</div>}>
+              <NewPostPage />
+            </Suspense>
+          ),
+        },
       ],
     },
   ]);
+
   return <RouterProvider router={router} />;
 }
 
