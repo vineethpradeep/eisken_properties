@@ -60,6 +60,7 @@ function SearchBar() {
         />
         <Link
           to={`/properties?type=${query.type}&city=${query.city}&minPrice=${query.minPrice}&maxPrice=${query.maxPrice}`}
+          className="search-btn"
         >
           <span className="searchIcon">
             <FaSearch />

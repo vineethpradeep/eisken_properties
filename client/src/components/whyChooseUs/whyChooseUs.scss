@@ -1,3 +1,5 @@
+@use "../../break_points.scss" as bp;
+
 .whyUs-container {
   display: flex;
   //   justify-content: center;
@@ -10,6 +12,8 @@
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    text-align: center;
+    margin: 0 2rem;
     .caption {
       color: #edac15;
       font-size: 14px;
@@ -22,5 +26,9 @@
   .review-container {
     display: flex;
     width: 80%;
+    flex-direction: column;
+    @include bp.lg {
+      flex-direction: row;
+    }
   }
 }

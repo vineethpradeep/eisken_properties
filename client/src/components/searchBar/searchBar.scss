@@ -1,9 +1,17 @@
+@use "../../break_points.scss" as bp;
+
 .searchBar {
   .type {
+    display: flex;
+    justify-content: center;
+    @include bp.lg {
+      justify-content: flex-start;
+    }
     button {
+      all: unset;
       padding: 16px 36px;
       //   border: 1px solid #999;
-      border-bottom: none;
+      // border-bottom: none;
       cursor: pointer;
       background-color: white;
       text-transform: capitalize;
@@ -13,33 +21,41 @@
         color: white;
       }
 
-      &:first-child {
-        border-top-left-radius: 5px;
-        border-right: none;
-      }
-      &:last-child {
-        border-top-right-radius: 5px;
-        border-left: none;
-      }
+      // &:first-child {
+      // border-top-left-radius: 5px;
+      // border-right: none;
+      // }
+      // &:last-child {
+      // border-top-right-radius: 5px;
+      // border-left: none;
+      // }
     }
   }
 
   form {
-    border: 1px solid #999;
+    // border: 1px solid #999;
     display: flex;
-    justify-content: space-between;
-    height: 64px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    // height: 64px;
     // gap: 5px;
 
     // @include sm {
     //   flex-direction: column;
     //   border: none;
     // }
+    @include bp.lg {
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
     input {
-      border: none;
-      padding: 0px 10px;
-      width: 200px;
+      flex: 1;
+      border: 0;
+      border-right: 1px solid #b9b2a9;
+      padding: 20px 10px;
+      // width: 200px;
       outline: none;
       transition: border-color 0.3s ease;
 
@@ -73,22 +89,24 @@
       }
     }
 
-    .searchIcon {
-      cursor: pointer;
-      background-color: #edac15;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    .search-btn {
+      .searchIcon {
+        cursor: pointer;
+        background-color: #edac15;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
 
-      //   @include sm{
-      //     padding: 10px;
-      //   }
+        //   @include sm{
+        //     padding: 10px;
+        //   }
 
-      svg {
-        width: 24px;
-        height: 24px;
-        color: #fff;
+        svg {
+          width: 24px;
+          height: 24px;
+          color: #fff;
+        }
       }
     }
   }

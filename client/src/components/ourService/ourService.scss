@@ -1,10 +1,9 @@
 @use "../../break_points.scss" as bp;
 
-.container {
+.service-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  .flex-container {
+  justify-content: center;
+  .service-wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -12,15 +11,18 @@
     gap: 6rem;
     justify-content: center;
     width: 80%;
+    @include bp.lg {
+      flex-wrap: nowrap;
+    }
 
     .content-section {
       display: flex;
       flex-direction: column; /* Stack items vertically */
       gap: 16px; /* Space between items */
       width: 100%;
-      @include bp.md {
-        width: 41.666667%;
-      }
+      // @include bp.md {
+      //   width: 41.666667%;
+      // }
       .caption {
         color: #edac15;
         font-size: 14px;
@@ -63,9 +65,9 @@
     .image-section {
       width: 100%;
       // padding-top: 2.5rem;
-      @include bp.md {
-        width: 41.666667%;
-      }
+      // @include bp.md {
+      //   width: 41.666667%;
+      // }
       p {
         font-size: 1.125rem;
         margin-top: 10px;

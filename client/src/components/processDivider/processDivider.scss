@@ -1,0 +1,10 @@
+@use "../../break_points.scss" as bp;
+
+.rotate-mobile {
+  transition: transform 0.3s ease;
+  transform: rotate(90deg);
+
+  @include bp.lg {
+    transform: rotate(0deg);
+  }
+}

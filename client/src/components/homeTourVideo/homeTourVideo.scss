@@ -1,3 +1,5 @@
+@use "../../break_points.scss" as bp;
+
 .videoTourContainer {
   display: flex;
   align-items: center;
@@ -7,7 +9,7 @@
   .videoTour {
     overflow: hidden;
     width: 100%;
-    height: 600px;
+    height: 820px;
     // z-index: -10;
     position: relative;
     $tw-translate-x: 0;
@@ -17,10 +19,13 @@
     $tw-skew-y: 0;
     $tw-scale-x: 1;
     $tw-scale-y: 1;
-
     transform: translate(#{$tw-translate-x}, #{$tw-translate-y})
       rotate(#{$tw-rotate}) skewX(#{$tw-skew-x}) skewY(#{$tw-skew-y})
       scaleX(#{$tw-scale-x}) scaleY(#{$tw-scale-y});
+
+    @include bp.lg {
+      height: 600px;
+    }
 
     video {
       object-fit: cover;
@@ -33,11 +38,16 @@
       inset: 0px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      margin-top: 8rem;
+      flex-direction: column;
+      @include bp.lg {
+        justify-content: center;
+      }
 
       .bg {
+        width: 60%;
         background-color: rgba(31, 41, 55, 0.6);
-        padding: 1rem;
+        padding: 2rem;
         border-radius: 0.25rem;
       }
 
@@ -46,6 +56,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-bottom: 30px;
 
         h1 {
           color: rgb(237 172 21);

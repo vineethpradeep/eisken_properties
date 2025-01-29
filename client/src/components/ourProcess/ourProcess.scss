@@ -1,9 +1,12 @@
+@use "../../break_points.scss" as bp;
+
 .processFlow {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 300px;
+
   &-count {
     position: absolute;
     top: 0;

@@ -3,10 +3,9 @@ import OurProcess from "../ourProcess/OurProcess";
 import processOne from "../../images/process-img-1.png";
 import processTwo from "../../images/process-img-2.png";
 import processThree from "../../images/process-img-3.png";
-import ProcessDivider from "../ProcessDivider";
+import ProcessDivider from "../processDivider/ProcessDivider";
 
 import "./howItWorks.scss";
-
 const steps = [
   {
     id: 1,

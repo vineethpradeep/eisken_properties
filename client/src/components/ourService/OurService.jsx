@@ -5,8 +5,8 @@ import "./ourService.scss";
 
 const OurService = () => {
   return (
-    <div className="container">
-      <div className="flex-container">
+    <div className="service-container">
+      <div className="service-wrapper">
         <div className="image-section">
           <div className="card-section">
             {/* <img
