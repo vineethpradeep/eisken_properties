@@ -40,9 +40,6 @@
       align-items: center;
       margin-top: 8rem;
       flex-direction: column;
-      @include bp.lg {
-        justify-content: center;
-      }
 
       .bg {
         width: 60%;
