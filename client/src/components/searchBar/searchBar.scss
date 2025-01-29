@@ -53,11 +53,18 @@
     input {
       flex: 1;
       border: 0;
-      border-right: 1px solid #b9b2a9;
+      border-bottom: 1px solid #b9b2a9;
       padding: 20px 10px;
       // width: 200px;
       outline: none;
       transition: border-color 0.3s ease;
+      &:last-child {
+        border-bottom: none;
+      }
+      @include bp.lg {
+        border: 0;
+        border-right: 1px solid #b9b2a9;
+      }
 
       //   @include lg {
       //     padding: 0px 5px;
