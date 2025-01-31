@@ -9,23 +9,26 @@ function UploadWidget({ uwConfig, setState }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    // Check if the script is already loaded
-    if (!loaded) {
-      const uwScript = document.getElementById("uw");
-      if (!uwScript) {
-        // If not loaded, create and load the script
-        const script = document.createElement("script");
-        script.setAttribute("async", "");
-        script.setAttribute("id", "uw");
-        script.src = "https://upload-widget.cloudinary.com/global/all.js";
-        script.addEventListener("load", () => setLoaded(true));
-        document.body.appendChild(script);
-      } else {
-        // If already loaded, update the state
-        setLoaded(true);
-      }
+    let script = document.getElementById("uw");
+
+    if (!script) {
+      script = document.createElement("script");
+      script.setAttribute("async", "");
+      script.setAttribute("id", "uw");
+      script.src = "https://upload-widget.cloudinary.com/global/all.js";
+
+      script.onload = () => setLoaded(true);
+      document.body.appendChild(script);
+    } else {
+      setLoaded(true);
     }
-  }, [loaded]);
+
+    return () => {
+      if (script) {
+        script.onload = null;
+      }
+    };
+  }, []);
 
   const initializeCloudinaryWidget = () => {
     if (loaded) {
