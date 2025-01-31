@@ -4,10 +4,10 @@ import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
 const testimonials = [
   {
-    name: "Rebecca Watson",
-    company: "R. W. Construction Inc.",
+    name: "Emily & James R",
+    company: "First-Time Homebuyers",
     image: "https://i.pravatar.cc/150?img=32",
-    text: "StructrePress company has performed in a consistent, demanding and professional manner. They have got my project on time with the competition with a highly skilled, well-organized and experienced team of professional construction managers. Our company is looking forward to hire them again.",
+    text: "Working with Eiesken Properties was the best decision we made when buying our home! They understood our needs, found us the perfect property, and made the entire process stress-free. Their professionalism and attention to detail were outstanding. Highly recommend!",
   },
 ];
 
