@@ -1,10 +1,10 @@
-import "./register.scss";
+import "./registerUser.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SignupImage from "../../images/svg/signup_welcome.svg";
 import apiRequest from "../../lib/apiRequest";
 
-function Register() {
+const RegisterUser = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,6 +67,6 @@ function Register() {
       </div>
     </div>
   );
-}
+};
 
-export default Register;
+export default RegisterUser;
