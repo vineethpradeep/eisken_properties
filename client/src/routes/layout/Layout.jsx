@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./layout.scss";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 import { Navigate, Outlet } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 
