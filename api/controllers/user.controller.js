@@ -57,22 +57,53 @@ export const updateUser = async (req, res) => {
   }
 };
 
-export const deleteUser = async (req, res) => {
-  const id = req.params.id;
-  const tokenUserId = req.userId;
+// export const deleteUser = async (req, res) => {
+//   const id = req.params.id;
+//   const tokenUserId = req.userId;
 
-  if (id !== tokenUserId) {
-    return res.status(403).json({ message: "Not Authorized!" });
+//   if (id !== tokenUserId) {
+//     return res.status(403).json({ message: "Not Authorized!" });
+//   }
+
+//   try {
+//     await prisma.user.delete({
+//       where: { id },
+//     });
+//     res.status(200).json({ message: "User deleted" });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ message: "Failed to delete users!" });
+//   }
+// };
+
+// Delete user only for admin
+export const deleteUser = async (req, res) => {
+  const { id } = req.params; // The ID of the user to delete
+  const tokenUserId = req.userId; // ID of the currently authenticated user (admin)
+
+  // Admin should be able to delete any user, but not themselves
+  if (!id) {
+    return res.status(400).json({ message: "User ID is required!" });
   }
 
   try {
-    await prisma.user.delete({
-      where: { id },
-    });
-    res.status(200).json({ message: "User deleted" });
+    const userToDelete = await prisma.user.findUnique({ where: { id } });
+    if (!userToDelete) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+
+    // Proceed with deleting the user (admin only)
+    if (userToDelete.isAdmin) {
+      return res.status(403).json({ message: "Admin cannot be deleted!" });
+    }
+
+    // Admin can delete any user
+    await prisma.user.delete({ where: { id } });
+
+    res.status(200).json({ message: "User deleted successfully!" });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to delete users!" });
+    res.status(500).json({ message: "Failed to delete user!" });
   }
 };
 

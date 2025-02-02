@@ -9,6 +9,7 @@ import { Suspense, useContext } from "react";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import axios from "axios";
+import UserTable from "../../components/userTable/UserTable";
 
 function ProfilePage() {
   const data = useLoaderData();
@@ -16,9 +17,9 @@ function ProfilePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState(currentUser?.avatar);
+  const [users, setUsers] = useState(data.getUsersResponse?.data || []);
   const navigate = useNavigate();
-
   const toggleModal = () => setIsOpen(!isOpen);
 
   const handleLogout = async () => {
@@ -78,6 +79,11 @@ function ProfilePage() {
     // console.log("Form Data:", formData);
   };
 
+  // Function to handle user deletion
+  const handleDeleteUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
   return (
     <>
       <div className="wrapper-profile">
@@ -86,9 +92,11 @@ function ProfilePage() {
             <div className="wrapper-details">
               <div className="title">
                 <h1>User Information</h1>
-                <Button variant={"primary"} onClick={toggleModal}>
-                  Update Profile
-                </Button>
+                {!currentUser?.googleId && (
+                  <Button variant={"primary"} onClick={toggleModal}>
+                    Update Profile
+                  </Button>
+                )}
               </div>
               <div className="info">
                 <span>
@@ -108,6 +116,29 @@ function ProfilePage() {
                   Logout
                 </Button>
               </div>
+              {currentUser?.isAdmin && (
+                <div className="userTableContainer">
+                  <div className="title">
+                    <h1>Creat User</h1>
+                    <Link to="/register">
+                      <Button variant={"primary"}>Create New User</Button>
+                    </Link>
+                  </div>
+                  <Suspense fallback={<p>Loading...</p>}>
+                    <Await
+                      resolve={data.getUsersResponse}
+                      errorElement={<p>Error loading user!</p>}
+                    >
+                      {(getUsersResponse) => (
+                        <UserTable
+                          usersLists={getUsersResponse.data}
+                          onDeleteUser={handleDeleteUser}
+                        />
+                      )}
+                    </Await>
+                  </Suspense>
+                </div>
+              )}
               <div className="title">
                 <h1>My List</h1>
                 <Link to="/add">

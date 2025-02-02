@@ -1,0 +1,134 @@
+.about-us {
+  position: relative;
+  background: #1a202c;
+  margin-top: 5rem;
+
+  &__svg-container {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    pointer-events: none;
+    overflow: hidden;
+    margin-top: -80px;
+  }
+
+  &__svg {
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+  }
+  &__wavePolygon {
+    fill: #1a202c;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  &__card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  &__moreInfo {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+
+  //   &__header {
+  //     display: flex;
+  //     flex-wrap: wrap;
+  //     justify-content: center;
+  //     align-items: center;
+  //     gap: 2rem;
+  //     padding-bottom: 1rem;
+  //   }
+
+  //   &__button {
+  //     background-color: #ff5a5f;
+  //     color: white;
+  //     font-weight: bold;
+  //     padding: 0.5rem 1rem;
+  //     border-radius: 5px;
+  //     text-decoration: none;
+  //     transition: background 0.3s;
+
+  //     &:hover {
+  //       background-color: #e0484d;
+  //     }
+  //   }
+
+  &__stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    // padding-top: 1.5rem;
+  }
+
+  &__stat {
+    text-align: center;
+    display: flex;
+    gap: 3rem;
+    &:first-child {
+      border: 0;
+      border-right: 1px solid #e6e6e6;
+      padding-right: 2rem;
+    }
+    h4 {
+      font-size: 24px;
+    }
+  }
+
+  &__info {
+    margin-top: 2rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  &__location,
+  &__business {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+
+  &__icon {
+    margin-right: 0.5rem;
+    color: #777;
+  }
+
+  &__description {
+    border-top: 1px solid #ccc;
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+
+  &__policy-link {
+    display: block;
+    color: #ff5a5f;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

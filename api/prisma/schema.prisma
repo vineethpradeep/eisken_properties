@@ -74,8 +74,10 @@ model User {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   email      String      @unique
   username   String      @unique
-  password   String
+  password   String?
   avatar     String?
+  googleId   String?     
+  isAdmin    Boolean     @default(false)
   createdAt  DateTime    @default(now())
   posts      Post[]
   savedPosts SavedPost[]

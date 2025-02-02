@@ -1,6 +1,5 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-
 import "./newPostPage.scss";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
@@ -8,6 +7,7 @@ import apiRequest from "../../lib/apiRequest";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import { FaTimesCircle } from "react-icons/fa";
+import axios from "axios";
 
 function ImagePlaceholder({ image, onRemove }) {
   return (
@@ -31,10 +31,83 @@ function NewPostPage() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
 
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state to show during geocode request
+
   const navigate = useNavigate();
 
   const handleRemoveImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // Geocode postal code to get latitude and longitude
+  const geocodePostalCode = async (postalCode) => {
+    if (!postalCode) return;
+
+    setLoading(true);
+
+    try {
+      // UK-specific geocoding API
+      const response = await axios.get(
+        `https://api.postcodes.io/postcodes/${postalCode}`
+      );
+      if (response.data.status === 200) {
+        const { latitude, longitude } = response.data.result;
+        setLat(latitude); // Set latitude
+        setLng(longitude); // Set longitude
+
+        // Reverse geocode to get city and address based on lat and lng
+        reverseGeocode(latitude, longitude);
+      } else {
+        setError("No location found for this postal code.");
+      }
+    } catch (err) {
+      console.error("Geocoding error:", err);
+      setError("Failed to fetch location.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Reverse geocode latitude and longitude to get address and city
+  const reverseGeocode = async (lat, lng) => {
+    try {
+      // Reverse geocoding API request to get address based on latitude and longitude
+      const response = await axios.get(
+        `https://api.opencagedata.com/geocode/v1/json`,
+        {
+          params: {
+            q: `${lat},${lng}`,
+            key: "eb409dd0578e46ba9d0b9c5e866efd67", // Replace with your OpenCage API key
+          },
+        }
+      );
+
+      if (response.data.results && response.data.results.length > 0) {
+        const result = response.data.results[0];
+        setAddress(result.components.suburb); // Set full address
+        const city =
+          result.components.city ||
+          result.components.town ||
+          result.components.village;
+        setCity(city || ""); // Set city (if available)
+      } else {
+        setError("No address found for these coordinates.");
+      }
+    } catch (err) {
+      console.error("Reverse geocoding error:", err);
+      setError("Failed to fetch address.");
+    }
+  };
+
+  const handlePostalCodeChange = (e) => {
+    const value = e.target.value.toUpperCase();
+    setPostalCode(value); // Update postal code state
+    geocodePostalCode(value); // Call geocode function
   };
 
   const handleSubmit = async (e) => {
@@ -47,14 +120,14 @@ function NewPostPage() {
         postData: {
           title: inputs.title,
           price: parseInt(inputs.price),
-          address: inputs.address,
-          city: inputs.city,
+          address: address,
+          city: city,
           bedroom: parseInt(inputs.bedroom),
           bathroom: parseInt(inputs.bathroom),
           type: inputs.type,
           property: inputs.property,
-          latitude: inputs.latitude,
-          longitude: inputs.longitude,
+          latitude: String(lat),
+          longitude: String(lng),
           images: images,
         },
         postDetail: {
@@ -68,7 +141,7 @@ function NewPostPage() {
           train: parseInt(inputs.train),
         },
       });
-      navigate("/" + res.data.id);
+      navigate("/properties/" + res.data.id);
     } catch (err) {
       console.log(err);
       setError(error);
@@ -92,7 +165,22 @@ function NewPostPage() {
               </div>
               <div className="item">
                 <label htmlFor="address">Address</label>
-                <input id="address" name="address" type="text" />
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  value={address || ""}
+                />
+              </div>
+              <div className="item">
+                <label htmlFor="postalCode">Postal Code</label>
+                <input
+                  id="postalCode"
+                  name="postalCode"
+                  type="text"
+                  value={postalCode}
+                  onChange={handlePostalCodeChange}
+                />
               </div>
               <div className="item description">
                 <label htmlFor="desc">Description</label>
@@ -100,7 +188,7 @@ function NewPostPage() {
               </div>
               <div className="item">
                 <label htmlFor="city">City</label>
-                <input id="city" name="city" type="text" />
+                <input id="city" name="city" type="text" value={city || ""} />
               </div>
               <div className="item">
                 <label htmlFor="bedroom">Bedroom Number</label>
@@ -112,11 +200,21 @@ function NewPostPage() {
               </div>
               <div className="item">
                 <label htmlFor="latitude">Latitude</label>
-                <input id="latitude" name="latitude" type="text" />
+                <input
+                  id="latitude"
+                  name="latitude"
+                  type="text"
+                  value={lat || ""}
+                />
               </div>
               <div className="item">
                 <label htmlFor="longitude">Longitude</label>
-                <input id="longitude" name="longitude" type="text" />
+                <input
+                  id="longitude"
+                  name="longitude"
+                  type="text"
+                  value={lng || ""}
+                />
               </div>
               <div className="item">
                 <label htmlFor="type">Type</label>
@@ -170,15 +268,17 @@ function NewPostPage() {
                 <input min={0} id="school" name="school" type="number" />
               </div>
               <div className="item">
-                <label htmlFor="bus">bus</label>
+                <label htmlFor="bus">Bus Station</label>
                 <input min={0} id="bus" name="bus" type="number" />
               </div>
               <div className="item">
-                <label htmlFor="train">Train</label>
+                <label htmlFor="train">Train Station</label>
                 <input min={0} id="train" name="train" type="number" />
               </div>
-              <button className="sendButton">Add</button>
-              {error && <span>error</span>}
+              <button className="sendButton" disabled={loading}>
+                Add
+              </button>
+              {error && <span>{error.message}</span>}
             </form>
           </div>
         </div>

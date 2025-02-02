@@ -33,7 +33,7 @@ const ReviewCount = ({ reviewCount, reviewer }) => {
   }, []);
 
   return (
-    <div className="counterPart" ref={counterRef}>
+    <div className="couter-wrapper" ref={counterRef}>
       <h4>
         {counter && (
           <CountUp

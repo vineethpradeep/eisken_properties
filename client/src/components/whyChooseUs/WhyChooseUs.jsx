@@ -34,11 +34,13 @@ const WhyChooseUs = () => {
       </div>
       <div className="review-container">
         {reviews.map((review, index) => (
-          <ReviewCount
-            key={index}
-            reviewCount={review.reviewCount}
-            reviewer={review.reviewer}
-          />
+          <div className="counterPart" key={index}>
+            <ReviewCount
+              key={index}
+              reviewCount={review.reviewCount}
+              reviewer={review.reviewer}
+            />
+          </div>
         ))}
       </div>
     </div>

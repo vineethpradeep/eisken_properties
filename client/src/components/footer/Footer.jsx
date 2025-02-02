@@ -17,7 +17,7 @@ const Footer = () => {
           <polygon points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
-      <div className="container">
+      <div className="footerContainer">
         <div className="left-section">
           <h4>Let&apos;s keep in touch!</h4>
           <p>Eisken Properties, will respond 1-2 business days.</p>

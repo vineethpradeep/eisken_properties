@@ -15,6 +15,40 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      .caption {
+        color: #edac15;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 12px;
+        letter-spacing: 1.4px;
+      }
+      .password-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+          width: 100%;
+          padding: 20px;
+          padding-right: 40px; // Space for the icon
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+
+        .toggle-icon {
+          position: absolute;
+          right: 20px;
+          cursor: pointer;
+          font-size: 18px;
+          color: #666;
+
+          &:hover {
+            color: #333;
+          }
+        }
+      }
 
       form {
         display: flex;
@@ -27,18 +61,17 @@
           border-radius: 5px;
         }
 
-        button {
-          padding: 20px;
-          border-radius: 5px;
-          border: none;
-          background-color: #fece51;
-          color: white;
-          font-weight: bold;
-          cursor: pointer;
-
-          &:disabled {
-            background-color: #bed9d8;
-            cursor: not-allowed;
+        .signInBtn {
+          display: flex;
+          gap: 4px;
+          justify-content: space-between;
+          .secoundary {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            svg {
+              color: #fff;
+            }
           }
         }
 

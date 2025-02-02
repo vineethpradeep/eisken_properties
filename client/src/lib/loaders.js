@@ -33,8 +33,10 @@ export const propertiesListLoader = async ({ request }) => {
 export const profilePageLoader = async () => {
   const postResponse = await apiRequest("/users/profilePosts");
   const chatResponse = await apiRequest("/chats");
+  const getUsersResponse = await apiRequest("/users");
   return {
     postResponse,
     chatResponse,
+    getUsersResponse,
   };
 };

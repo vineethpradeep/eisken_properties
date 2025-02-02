@@ -1,0 +1,112 @@
+.our-teams {
+  padding: 3rem 0;
+  text-align: center;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  &__intro {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  &__description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  &__member {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 280px;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  &__image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  &__image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+  }
+
+  &__name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: #333;
+  }
+
+  &__role {
+    font-size: 1rem;
+    color: #777;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__socials {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: background 0.3s ease-in-out;
+
+    &.twitter {
+      background: #1da1f2;
+    }
+
+    &.facebook {
+      background: #1877f2;
+    }
+
+    &.instagram {
+      background: #e4405f;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

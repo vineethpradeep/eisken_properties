@@ -25,10 +25,11 @@ function Register() {
         username,
         email,
         password,
+        isAdmin: false,
       });
 
       console.log(res.data);
-      navigate("/login");
+      navigate("/profile");
     } catch (err) {
       setError(err.response.data.message);
     } finally {
@@ -42,9 +43,19 @@ function Register() {
         <div className="formContainer">
           <form onSubmit={handleSubmit}>
             <h1>Create an Account</h1>
-            <input name="username" type="text" placeholder="Username" />
-            <input name="email" type="text" placeholder="Email" />
-            <input name="password" type="password" placeholder="Password" />
+            <input
+              name="username"
+              type="text"
+              placeholder="Username"
+              required
+            />
+            <input name="email" type="text" placeholder="Email" required />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              required
+            />
             <button disabled={isLoading}>Register</button>
             {error && <span>{error}</span>}
             <Link to="/login">Do you have an account?</Link>

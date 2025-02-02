@@ -30,5 +30,29 @@
     @include bp.lg {
       flex-direction: row;
     }
+    .counterPart {
+      padding: 50px;
+      width: 100%;
+      text-align: center;
+      border: 0;
+      border-bottom: 1px solid #e6e6e6;
+      &:last-child {
+        border-bottom: none;
+      }
+      h4 {
+        font-size: 80px;
+      }
+
+      @include bp.lg {
+        margin-top: 30px;
+        width: 380px;
+        border: 0;
+        border-top: 1px solid #e6e6e6;
+        border-right: 1px solid #e6e6e6;
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
   }
 }

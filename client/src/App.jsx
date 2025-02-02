@@ -23,6 +23,8 @@ import {
   propertiesListLoader,
   propertyDetailsLoader,
 } from "./lib/loaders";
+import ContactUs from "./routes/contactUs/ContactUs";
+import AboutUs from "./routes/aboutUs/AboutUs";
 
 function App() {
   const router = createBrowserRouter([
@@ -59,6 +61,24 @@ function App() {
             </Suspense>
           ),
           loader: propertyDetailsLoader,
+        },
+        {
+          path: "/contact",
+          element: (
+            <Suspense fallback={<div>Loading Properties...</div>}>
+              <ContactUs />
+            </Suspense>
+          ),
+          loader: propertiesListLoader,
+        },
+        {
+          path: "/about",
+          element: (
+            <Suspense fallback={<div>Loading Properties...</div>}>
+              <AboutUs />
+            </Suspense>
+          ),
+          loader: propertiesListLoader,
         },
         {
           path: "/login",

@@ -1,28 +1,8 @@
 @use "../../break_points.scss" as bp;
-
-.counterPart {
-  padding: 50px;
-  width: 100%;
-  text-align: center;
-  border: 0;
-  border-bottom: 1px solid #e6e6e6;
-  &:last-child {
-    border-bottom: none;
-  }
-
-  @include bp.lg {
-    margin-top: 30px;
-    width: 380px;
-    border: 0;
-    border-top: 1px solid #e6e6e6;
-    border-right: 1px solid #e6e6e6;
-    &:last-child {
-      border-right: none;
-    }
-  }
-
+.couter-wrapper {
+  display: flex;
+  flex-direction: column;
   h4 {
-    font-size: 80px;
     font-weight: 300;
     letter-spacing: -1.6px;
     color: #edac15;

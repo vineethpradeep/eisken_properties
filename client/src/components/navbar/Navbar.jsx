@@ -8,8 +8,8 @@ import { useNotificationStore } from "../../lib/useNotificationStore.js";
 function Navbar() {
   const [menuOpen, setmenuOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  const fetch = useNotificationStore((state) => state.fetch);
-  const number = useNotificationStore((state) => state.number);
+  const fetch = useNotificationStore((state) => state?.fetch);
+  const number = useNotificationStore((state) => state?.number);
 
   if (currentUser) fetch();
   return (
@@ -22,8 +22,8 @@ function Navbar() {
         </div>
         <div className="centerMenu">
           <Link to="/properties">Properties</Link>
-          <Link to="/">About</Link>
-          <Link to="/">Contact</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
         </div>
         <div className="loginMenu">
           {currentUser ? (
@@ -32,7 +32,7 @@ function Navbar() {
                 src={currentUser?.avatar || "images/blankProfile.png"}
                 alt="User Image"
               />
-              <span>{currentUser.username}</span>
+              <span>{currentUser?.username}</span>
               <Link to="/profile" className="profile">
                 {number > 0 && <div className="notification">{number}</div>}
                 <span>Profile</span>
@@ -42,9 +42,6 @@ function Navbar() {
             <>
               <Link to="/login" className="signin">
                 Sign in
-              </Link>
-              <Link to="/register" className="register">
-                Sign up
               </Link>
             </>
           )}

@@ -1,0 +1,41 @@
+.table-container {
+  width: 100%;
+  //   max-width: 600px;
+  margin: 20px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #3c3c3c;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .delete-icon {
+      color: red;
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.2s;
+
+      &:hover {
+        color: darkred;
+      }
+    }
+  }
+}
