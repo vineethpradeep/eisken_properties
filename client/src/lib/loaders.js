@@ -13,9 +13,10 @@ export const propertyDetailsLoader = async ({ params }) => {
 //   });
 // };
 
-export const propertiesListLoader = async ({ request }) => {
-  const query = request.url.split("?")[1];
-  const postResponse = await apiRequest("/posts?" + query);
+export const propertiesListLoader = async () => {
+  // console.log(request);
+  // const query = request.url.split("?")[1];
+  const postResponse = await apiRequest("/posts");
   return {
     postResponse,
   };
