@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
-import "./ModalForm.scss";
+import "./modalForm.scss";
 
 const ModalForm = () => {
   const [isOpen, setIsOpen] = useState(false);

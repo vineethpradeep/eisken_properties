@@ -1,7 +1,7 @@
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa";
-import "./Jumbotron.scss";
+import "./jumbotron.scss";
 
 const Jumbotron = () => {
   return (
