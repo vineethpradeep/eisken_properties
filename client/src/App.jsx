@@ -69,7 +69,6 @@ function App() {
               <ContactUs />
             </Suspense>
           ),
-          loader: propertiesListLoader,
         },
         {
           path: "/about",
@@ -78,7 +77,6 @@ function App() {
               <AboutUs />
             </Suspense>
           ),
-          loader: propertiesListLoader,
         },
         {
           path: "/login",
