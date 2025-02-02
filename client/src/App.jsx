@@ -15,8 +15,8 @@ const PropertyDetails = lazy(() =>
 );
 const Login = lazy(() => import("./routes/login/Login"));
 const ProfilePage = lazy(() => import("./routes/profilePage/ProfilePage"));
-const Register = lazy(() => import("./routes/register/register"));
 const NewPostPage = lazy(() => import("./routes/newPostPage/NewPostPage"));
+const RegisterPage = lazy(() => import("./routes/register/RegisterUser.jsx"));
 
 import {
   profilePageLoader,
@@ -88,14 +88,6 @@ function App() {
             </Suspense>
           ),
         },
-        {
-          path: "/register",
-          element: (
-            <Suspense fallback={<div>Loading Register...</div>}>
-              <Register />
-            </Suspense>
-          ),
-        },
       ],
     },
     {
@@ -120,6 +112,14 @@ function App() {
           element: (
             <Suspense fallback={<div>Loading New Post Page...</div>}>
               <NewPostPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/register",
+          element: (
+            <Suspense fallback={<div>Loading New Register Page...</div>}>
+              <RegisterPage />
             </Suspense>
           ),
         },
