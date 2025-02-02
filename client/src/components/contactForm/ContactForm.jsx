@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 // import { useSession } from "next-auth/react";
 // import { FaPaperPlane } from "react-icons/fa";
 import Button from "../button/Button";
-import "./ContactForm.scss";
+import "./contactForm.scss";
 
 const ContactForm = ({
   property,
