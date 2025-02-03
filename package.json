@@ -11,9 +11,5 @@
   },
   "author": "Eisken Properties",
   "license": "ISC",
-  "description": "Property to buy or sell from the Marketplace ",
-  "devDependencies": {
-    "concurrently": "^9.1.2",
-    "globals": "^15.14.0"
-  }
+  "description": "Property to buy or sell from the Marketplace "
 }
