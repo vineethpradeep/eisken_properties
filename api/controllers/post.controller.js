@@ -3,24 +3,30 @@ import jwt from "jsonwebtoken";
 
 export const getPosts = async (req, res) => {
   const query = req.query;
-  console.log(query);
+  console.log("Query Params:", query); // Logs the query params for debugging
+
   try {
+    const whereConditions = {};
+
+    // Conditionally add filters based on query parameters
+    if (query.city) whereConditions.city = query.city;
+    if (query.type) whereConditions.type = query.type;
+    if (query.property) whereConditions.property = query.property;
+    if (query.bedroom)
+      whereConditions.bedroom = parseInt(query.bedroom) || undefined;
+
+    // Price filter with safe defaults
+    whereConditions.price = {
+      gte: parseInt(query.minPrice) || 0, // Default to 0 if minPrice is not provided
+      lte: parseInt(query.maxPrice) || 10000000, // Default to a very high value if maxPrice is not provided
+    };
+
+    // Fetch the posts with or without query parameters
     const posts = await prisma.post.findMany({
-      where: {
-        city: query.city || undefined,
-        type: query.type || undefined,
-        property: query.property || undefined,
-        bedroom: parseInt(query.bedroom) || undefined,
-        price: {
-          gte: parseInt(query.minPrice) || 0,
-          lte: parseInt(query.maxPrice) || 10000000,
-        },
-      },
+      where: whereConditions,
     });
 
-    // setTimeout(() => {
     res.status(200).json(posts);
-    // }, 3000);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get posts" });

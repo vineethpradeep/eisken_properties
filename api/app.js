@@ -1,5 +1,5 @@
 import express from "express";
-import cros from "cors";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth.route.js";
 import process from "node:process";
@@ -11,7 +11,24 @@ import messageRoute from "./routes/message.route.js";
 
 const app = express();
 
-app.use(cros({ origin: process.env.CLIENT_URL, credentials: true }));
+const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:3000"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    console.log("Request origin:", origin);
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      console.log("Origin allowed:", origin);
+      callback(null, true);
+    } else {
+      console.log("Origin not allowed:", origin);
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 

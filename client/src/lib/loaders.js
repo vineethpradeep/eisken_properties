@@ -14,12 +14,16 @@ export const propertyDetailsLoader = async ({ params }) => {
 // };
 
 export const propertiesListLoader = async () => {
-  // console.log(request);
-  // const query = request.url.split("?")[1];
-  const postResponse = await apiRequest("/posts");
-  return {
-    postResponse,
-  };
+  try {
+    // const query = request.url.split("?")[1];
+    const postResponse = await apiRequest("/posts");
+    return {
+      postResponse,
+    };
+  } catch (error) {
+    console.error("Error fetching properties:", error);
+    throw new Error("Failed to load properties");
+  }
 };
 
 // export const profilePageLoader = async () => {
