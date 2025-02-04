@@ -11,7 +11,11 @@ import messageRoute from "./routes/message.route.js";
 
 const app = express();
 
-const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:3000"];
+const allowedOrigins = [
+  "https://eiskenproperties.vercel.app",
+  process.env.CLIENT_URL,
+  "http://localhost:3000",
+];
 const corsOptions = {
   origin: (origin, callback) => {
     console.log("Request origin:", origin);
