@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "echo 'No build step required for API'",
-    "server": "node server.js"
+    "postinstall": "prisma generate",
+    "server": "node server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
