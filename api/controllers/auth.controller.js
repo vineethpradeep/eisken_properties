@@ -78,6 +78,8 @@ export const login = async (req, res) => {
       .cookie("token", token, {
         httpOnly: true,
         // secure:true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
         maxAge: age,
       })
       .status(200)
@@ -130,7 +132,12 @@ export const googleLogin = async (req, res) => {
     );
 
     // Send JWT token in cookies or response
-    res.cookie("token", token, { httpOnly: true, maxAge: age });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
+      maxAge: age,
+    });
     res.status(200).json({ message: "Login successful", ...user });
   } catch (error) {
     console.error("Google login error:", error);
