@@ -21,6 +21,7 @@ function ProfilePage() {
   const [users, setUsers] = useState(data.getUsersResponse?.data || []);
   const navigate = useNavigate();
   const toggleModal = () => setIsOpen(!isOpen);
+  console.log(currentUser);
 
   const handleLogout = async () => {
     try {
@@ -139,22 +140,26 @@ function ProfilePage() {
                   </Suspense>
                 </div>
               )}
-              <div className="title">
-                <h1>My List</h1>
-                <Link to="/add">
-                  <button>Create New Post</button>
-                </Link>
-              </div>
-              <Suspense fallback={<p>Loading...</p>}>
-                <Await
-                  resolve={data.postResponse}
-                  errorElement={<p>Error loading posts!</p>}
-                >
-                  {(postResponse) => (
-                    <MyList posts={postResponse.data.userPosts} />
-                  )}
-                </Await>
-              </Suspense>
+              {!currentUser.googleId && (
+                <div className="createPost">
+                  <div className="title">
+                    <h1>My List</h1>
+                    <Link to="/add">
+                      <button>Create New Post</button>
+                    </Link>
+                  </div>
+                  <Suspense fallback={<p>Loading...</p>}>
+                    <Await
+                      resolve={data.postResponse}
+                      errorElement={<p>Error loading posts!</p>}
+                    >
+                      {(postResponse) => (
+                        <MyList posts={postResponse.data.userPosts} />
+                      )}
+                    </Await>
+                  </Suspense>
+                </div>
+              )}
               <div className="title">
                 <h1>Saved List</h1>
               </div>

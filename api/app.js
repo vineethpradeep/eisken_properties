@@ -14,7 +14,6 @@ const app = express();
 const allowedOrigins = [
   "https://eiskenproperties.vercel.app",
   process.env.CLIENT_URL,
-  "http://localhost:3000",
 ];
 const corsOptions = {
   origin: (origin, callback) => {

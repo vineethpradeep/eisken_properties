@@ -37,7 +37,7 @@ const UserTable = ({ usersLists, onDeleteUser }) => {
               <td>{`${user.username} ${user.isAdmin ? " -  (Admin)" : ""}`}</td>
               <td>{user.email}</td>
               <td>
-                {!user.isAdmin && (
+                {!user.isAdmin && !user.googleId && (
                   <span
                     className="delete-icon"
                     onClick={() => handleDelete(user.id)}

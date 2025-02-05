@@ -8,7 +8,7 @@ import { Suspense } from "react";
 
 const PropertiesList = () => {
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
   // const data = listData;
   return (
     <div className="wrapper">
