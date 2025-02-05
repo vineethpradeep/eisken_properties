@@ -1,5 +1,6 @@
 // import { defer } from "react-router-dom";
 import apiRequest from "./apiRequest";
+import { redirect } from "react-router-dom";
 
 export const propertyDetailsLoader = async ({ params }) => {
   const res = await apiRequest("/posts/" + params.id);
@@ -26,22 +27,21 @@ export const propertiesListLoader = async () => {
   }
 };
 
-// export const profilePageLoader = async () => {
-//   const postPromise = apiRequest("/users/profilePosts");
-//   const chatPromise = apiRequest("/chats");
-//   return defer({
-//     postResponse: postPromise,
-//     chatResponse: chatPromise,
-//   });
-// };
-
 export const profilePageLoader = async () => {
-  const postResponse = await apiRequest("/users/profilePosts");
-  const chatResponse = await apiRequest("/chats");
-  const getUsersResponse = await apiRequest("/users");
-  return {
-    postResponse,
-    chatResponse,
-    getUsersResponse,
-  };
+  try {
+    const postResponse = await apiRequest.get("/users/profilePosts");
+    const chatResponse = await apiRequest.get("/chats");
+    const getUsersResponse = await apiRequest.get("/users");
+
+    return {
+      postResponse,
+      chatResponse,
+      getUsersResponse,
+    };
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      return redirect("/login");
+    }
+    throw error;
+  }
 };

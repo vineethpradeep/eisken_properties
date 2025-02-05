@@ -108,10 +108,10 @@ function ProfilePage() {
                   />
                 </span>
                 <span>
-                  Username: <b>{currentUser.username}</b>
+                  Username: <b>{currentUser?.username}</b>
                 </span>
                 <span>
-                  E-mail: <b>{currentUser.email}</b>
+                  E-mail: <b>{currentUser?.email}</b>
                 </span>
                 <Button variant={"secoundary"} onClick={handleLogout}>
                   Logout
@@ -127,12 +127,12 @@ function ProfilePage() {
                   </div>
                   <Suspense fallback={<p>Loading...</p>}>
                     <Await
-                      resolve={data.getUsersResponse}
+                      resolve={data?.getUsersResponse}
                       errorElement={<p>Error loading user!</p>}
                     >
                       {(getUsersResponse) => (
                         <UserTable
-                          usersLists={getUsersResponse.data}
+                          usersLists={getUsersResponse?.data}
                           onDeleteUser={handleDeleteUser}
                         />
                       )}
@@ -150,11 +150,11 @@ function ProfilePage() {
                   </div>
                   <Suspense fallback={<p>Loading...</p>}>
                     <Await
-                      resolve={data.postResponse}
+                      resolve={data?.postResponse}
                       errorElement={<p>Error loading posts!</p>}
                     >
                       {(postResponse) => (
-                        <MyList posts={postResponse.data.userPosts} />
+                        <MyList posts={postResponse?.data?.userPosts} />
                       )}
                     </Await>
                   </Suspense>
@@ -165,11 +165,11 @@ function ProfilePage() {
               </div>
               <Suspense fallback={<p>Loading...</p>}>
                 <Await
-                  resolve={data.postResponse}
+                  resolve={data?.postResponse}
                   errorElement={<p>Error loading posts!</p>}
                 >
                   {(postResponse) => (
-                    <MyList posts={postResponse.data.savedPosts} />
+                    <MyList posts={postResponse?.data?.savedPosts} />
                   )}
                 </Await>
               </Suspense>
@@ -179,10 +179,10 @@ function ProfilePage() {
             <div className="wrapper-chat">
               <Suspense fallback={<p>Loading...</p>}>
                 <Await
-                  resolve={data.chatResponse}
+                  resolve={data?.chatResponse}
                   errorElement={<p>Error loading chats!</p>}
                 >
-                  {(chatResponse) => <Chat chats={chatResponse.data} />}
+                  {(chatResponse) => <Chat chats={chatResponse?.data} />}
                 </Await>
               </Suspense>
             </div>
@@ -201,8 +201,8 @@ function ProfilePage() {
                   <input
                     type="text"
                     name="username"
-                    defaultValue={currentUser.username}
-                    placeholder={currentUser.username}
+                    defaultValue={currentUser?.username}
+                    placeholder={currentUser?.username}
                     className="form-input"
                   />
                 </label>
@@ -211,8 +211,8 @@ function ProfilePage() {
                   <input
                     type="email"
                     name="email"
-                    defaultValue={currentUser.email}
-                    placeholder={currentUser.email}
+                    defaultValue={currentUser?.email}
+                    placeholder={currentUser?.email}
                     className="form-input"
                   />
                 </label>

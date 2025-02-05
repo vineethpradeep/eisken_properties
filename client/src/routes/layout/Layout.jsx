@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./layout.scss";
 import Navbar from "../../components/navbar/Navbar";
@@ -19,15 +19,21 @@ function Layout() {
 
 function ProtectedLayout() {
   const { currentUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
 
-  return !currentUser ? (
-    <Navigate to="/login" />
-  ) : (
+  useEffect(() => {
+    setLoading(false);
+  }, [currentUser]);
+
+  if (loading) return <div>Loading...</div>;
+  return currentUser ? (
     <div className="layout">
       <Navbar />
       <Outlet />
       <Footer />
     </div>
+  ) : (
+    <Navigate to="/login" replace />
   );
 }
 
